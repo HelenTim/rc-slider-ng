@@ -1,0 +1,54 @@
+{
+    "sourceFile": "docs/examples/handle.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1678427236140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678427477807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n         defaultValue={[3, 10]}\n         tipFormatter={value => `${value}!`}\n         allowCross={false}\n         onChange={(value) => console.log({value})}\n+        disabels={ [true,false]}\n       />\n     </div>\n     <div style={wrapperStyle}>\n       <p>Keyboard events disabled</p>\n"
+                },
+                {
+                    "date": 1678427568365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,10 @@\n         max={20}\n         defaultValue={[3, 10]}\n         tipFormatter={value => `${value}!`}\n         allowCross={false}\n-        onChange={(value) => console.log({value})}\n-        disabels={ [true,false]}\n+        onChange={value => console.log({ value })}\n+        disableds={[true, false]}\n       />\n     </div>\n     <div style={wrapperStyle}>\n       <p>Keyboard events disabled</p>\n"
+                },
+                {
+                    "date": 1678429849566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         defaultValue={[3, 10]}\n         tipFormatter={value => `${value}!`}\n         allowCross={false}\n         onChange={value => console.log({ value })}\n-        disableds={[true, false]}\n+        disableds={[false, false]}\n       />\n     </div>\n     <div style={wrapperStyle}>\n       <p>Keyboard events disabled</p>\n"
+                },
+                {
+                    "date": 1678431676007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,12 +25,12 @@\n         range\n         min={0}\n         max={20}\n         defaultValue={[3, 10]}\n-        tipFormatter={value => `${value}!`}\n+        tipFormatter={(value) => `${value}!`}\n         allowCross={false}\n-        onChange={value => console.log({ value })}\n-        disableds={[false, false]}\n+        onChange={(value) => console.log({ value })}\n+        disableds={[true, false]}\n       />\n     </div>\n     <div style={wrapperStyle}>\n       <p>Keyboard events disabled</p>\n"
+                },
+                {
+                    "date": 1678432910222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         defaultValue={[3, 10]}\n         tipFormatter={(value) => `${value}!`}\n         allowCross={false}\n         onChange={(value) => console.log({ value })}\n-        disableds={[true, false]}\n+        disableds={[false, true]}\n       />\n     </div>\n     <div style={wrapperStyle}>\n       <p>Keyboard events disabled</p>\n"
+                },
+                {
+                    "date": 1678435180248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         defaultValue={[3, 10]}\n         tipFormatter={(value) => `${value}!`}\n         allowCross={false}\n         onChange={(value) => console.log({ value })}\n-        disableds={[false, true]}\n+        disableds={[true, false]}\n       />\n     </div>\n     <div style={wrapperStyle}>\n       <p>Keyboard events disabled</p>\n"
+                },
+                {
+                    "date": 1678435238523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,8 @@\n         defaultValue={[3, 10]}\n         tipFormatter={(value) => `${value}!`}\n         allowCross={false}\n         onChange={(value) => console.log({ value })}\n-        disableds={[true, false]}\n       />\n     </div>\n     <div style={wrapperStyle}>\n       <p>Keyboard events disabled</p>\n"
+                },
+                {
+                    "date": 1678435262524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         min={0}\n         max={20}\n         defaultValue={[3, 10]}\n         tipFormatter={(value) => `${value}!`}\n-        allowCross={false}\n+        // allowCross={false}\n         onChange={(value) => console.log({ value })}\n       />\n     </div>\n     <div style={wrapperStyle}>\n"
+                },
+                {
+                    "date": 1678435282676,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         min={0}\n         max={20}\n         defaultValue={[3, 10]}\n         tipFormatter={(value) => `${value}!`}\n-        // allowCross={false}\n+        allowCross={false}\n         onChange={(value) => console.log({ value })}\n       />\n     </div>\n     <div style={wrapperStyle}>\n"
+                }
+            ],
+            "date": 1678427236140,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport Slider from '../../index';\nimport '../../assets/index.less';\nimport TooltipSlider, { handleRender } from '../../index';\n\nconst wrapperStyle = { width: 400, margin: 50 };\n\nexport default () => (\n  <div>\n    <div style={wrapperStyle}>\n      <p>Slider with custom handle</p>\n      <Slider min={0} max={20} defaultValue={3} handleRender={handleRender} />\n    </div>\n    <div style={wrapperStyle}>\n      <p>Reversed Slider with custom handle</p>\n      <Slider min={0} max={20} reverse defaultValue={3} handleRender={handleRender} />\n    </div>\n    <div style={wrapperStyle}>\n      <p>Slider with fixed values</p>\n      <Slider min={20} defaultValue={20} marks={{ 20: 20, 40: 40, 100: 100 }} step={null} />\n    </div>\n    <div style={wrapperStyle}>\n      <p>Range with custom tooltip</p>\n      <TooltipSlider\n        range\n        min={0}\n        max={20}\n        defaultValue={[3, 10]}\n        tipFormatter={value => `${value}!`}\n        allowCross={false}\n        onChange={(value) => console.log({value})}\n      />\n    </div>\n    <div style={wrapperStyle}>\n      <p>Keyboard events disabled</p>\n      <Slider defaultValue={3} keyboard={false} />\n    </div>\n  </div>\n);\n"
+        }
+    ]
+}

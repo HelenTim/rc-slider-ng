@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/Tracks/Track.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1678433973878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678434053497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n \n   // ============================ Events ============================\n   const onInternalStartMove = (e: React.MouseEvent | React.TouchEvent) => {\n     e.stopPropagation();\n+    debugger;\n     if (!disabled && onStartMove) {\n       onStartMove(e, -1);\n     }\n   };\n"
+                },
+                {
+                    "date": 1678435100322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,8 @@\n   const offsetEnd = getOffset(end, min, max);\n \n   // ============================ Events ============================\n   const onInternalStartMove = (e: React.MouseEvent | React.TouchEvent) => {\n-    e.stopPropagation();\n     debugger;\n     if (!disabled && onStartMove) {\n       onStartMove(e, -1);\n     }\n"
+                },
+                {
+                    "date": 1678435106984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,8 @@\n   const offsetEnd = getOffset(end, min, max);\n \n   // ============================ Events ============================\n   const onInternalStartMove = (e: React.MouseEvent | React.TouchEvent) => {\n-    debugger;\n     if (!disabled && onStartMove) {\n       onStartMove(e, -1);\n     }\n   };\n"
+                }
+            ],
+            "date": 1678433973878,
+            "name": "Commit-0",
+            "content": "import * as React from 'react';\nimport classNames from 'classnames';\nimport SliderContext from '../context';\nimport { getOffset } from '../util';\nimport type { OnStartMove } from '../interface';\n\nexport interface TrackProps {\n  prefixCls: string;\n  style?: React.CSSProperties;\n  start: number;\n  end: number;\n  index: number;\n  onStartMove?: OnStartMove;\n}\n\nexport default function Track(props: TrackProps) {\n  const { prefixCls, style, start, end, index, onStartMove } = props;\n  const { direction, min, max, disabled, range } = React.useContext(SliderContext);\n\n  const trackPrefixCls = `${prefixCls}-track`;\n\n  const offsetStart = getOffset(start, min, max);\n  const offsetEnd = getOffset(end, min, max);\n\n  // ============================ Events ============================\n  const onInternalStartMove = (e: React.MouseEvent | React.TouchEvent) => {\n    e.stopPropagation();\n    if (!disabled && onStartMove) {\n      onStartMove(e, -1);\n    }\n  };\n\n  // ============================ Render ============================\n  const positionStyle: React.CSSProperties = {};\n\n  switch (direction) {\n    case 'rtl':\n      positionStyle.right = `${offsetStart * 100}%`;\n      positionStyle.width = `${offsetEnd * 100 - offsetStart * 100}%`;\n      break;\n\n    case 'btt':\n      positionStyle.bottom = `${offsetStart * 100}%`;\n      positionStyle.height = `${offsetEnd * 100 - offsetStart * 100}%`;\n      break;\n\n    case 'ttb':\n      positionStyle.top = `${offsetStart * 100}%`;\n      positionStyle.height = `${offsetEnd * 100 - offsetStart * 100}%`;\n      break;\n\n    default:\n      positionStyle.left = `${offsetStart * 100}%`;\n      positionStyle.width = `${offsetEnd * 100 - offsetStart * 100}%`;\n  }\n\n  return (\n    <div\n      className={classNames(trackPrefixCls, range && `${trackPrefixCls}-${index + 1}`)}\n      style={{\n        ...positionStyle,\n        ...style,\n      }}\n      onMouseDown={onInternalStartMove}\n      onTouchStart={onInternalStartMove}\n    />\n  );\n}\n"
+        }
+    ]
+}
