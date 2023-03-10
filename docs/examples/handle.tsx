@@ -26,9 +26,9 @@ export default () => (
         min={0}
         max={20}
         defaultValue={[3, 10]}
-        tipFormatter={(value) => `${value}!`}
+        tipFormatter={value => `${value}!`}
         allowCross={false}
-        onChange={(value) => console.log({ value })}
+        onChange={value => console.log({ value })}
       />
     </div>
     <div style={wrapperStyle}>

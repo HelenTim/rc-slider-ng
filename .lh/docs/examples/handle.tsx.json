@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1678427236140,
@@ -44,6 +44,22 @@
                 {
                     "date": 1678435282676,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         min={0}\n         max={20}\n         defaultValue={[3, 10]}\n         tipFormatter={(value) => `${value}!`}\n-        // allowCross={false}\n+        allowCross={false}\n         onChange={(value) => console.log({ value })}\n       />\n     </div>\n     <div style={wrapperStyle}>\n"
+                },
+                {
+                    "date": 1678439428492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n     </div>\n     <div style={wrapperStyle}>\n       <p>Range with custom tooltip</p>\n       <TooltipSlider\n+        disables = {[true,false]}\n         range\n         min={0}\n         max={20}\n         defaultValue={[3, 10]}\n"
+                },
+                {
+                    "date": 1678439456032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,16 +21,16 @@\n     </div>\n     <div style={wrapperStyle}>\n       <p>Range with custom tooltip</p>\n       <TooltipSlider\n-        disables = {[true,false]}\n+        disabled={[true, false]}\n         range\n         min={0}\n         max={20}\n         defaultValue={[3, 10]}\n-        tipFormatter={(value) => `${value}!`}\n+        tipFormatter={value => `${value}!`}\n         allowCross={false}\n-        onChange={(value) => console.log({ value })}\n+        onChange={value => console.log({ value })}\n       />\n     </div>\n     <div style={wrapperStyle}>\n       <p>Keyboard events disabled</p>\n"
+                },
+                {
+                    "date": 1678439469330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     </div>\n     <div style={wrapperStyle}>\n       <p>Range with custom tooltip</p>\n       <TooltipSlider\n-        disabled={[true, false]}\n+        disableds={[true, false]}\n         range\n         min={0}\n         max={20}\n         defaultValue={[3, 10]}\n"
+                },
+                {
+                    "date": 1678439609111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,8 @@\n     </div>\n     <div style={wrapperStyle}>\n       <p>Range with custom tooltip</p>\n       <TooltipSlider\n-        disableds={[true, false]}\n         range\n         min={0}\n         max={20}\n         defaultValue={[3, 10]}\n"
                 }
             ],
             "date": 1678427236140,
