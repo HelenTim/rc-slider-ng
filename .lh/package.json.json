@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1678435319401,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678673622464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"name\": \"rc-slider-ng\",\n-  \"version\": \"0.2.0\",\n+  \"version\": \"0.2.1\",\n   \"description\": \"Slider UI component for React\",\n   \"engines\": {\n     \"node\": \">=8.x\"\n   },\n"
                 }
             ],
             "date": 1678435319401,

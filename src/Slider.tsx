@@ -98,7 +98,7 @@ export interface SliderRef {
 
 const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<SliderRef>) => {
   const {
-    disableds = [false, false],
+    disableds = [],
     prefixCls = 'rc-slider',
     className,
     style,
@@ -284,47 +284,27 @@ const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<SliderRef>) 
       let valueDist = mergedMax - mergedMin;
       // debugger;
 
-      const disabledsTrueIndex = disableds.findIndex((item) => item === true);
+      rawValues.forEach((val, index) => {
+        const dist = Math.abs(newValue - val);
+        if (dist <= valueDist) {
+          valueDist = dist;
+          valueIndex = index; // 找到距离最近可调节的值下标
+        }
+      });
 
-      if (disabledsTrueIndex === -1) {
-        rawValues.forEach((val, index) => {
-          const dist = Math.abs(newValue - val);
-          if (dist <= valueDist) {
-            valueDist = dist;
-            valueIndex = index;
-          }
-        });
-      } else {
-        if (newValue > rawValues[disabledsTrueIndex]) {
-          let hasResault = false;
-          rawValues.forEach((val, index) => {
-            const dist = Math.abs(newValue - val);
-            if (index > disabledsTrueIndex) {
-              if (dist <= valueDist) {
-                valueDist = dist;
-                valueIndex = index;
-                hasResault = true;
-              }
-            }
-          });
-          if (!hasResault) {
-            return;
-          }
+      if (newValue > rawValues[valueIndex] && disableds[valueIndex] === true) {
+        if (valueIndex + 1 <= rawValues.length - 1 && disableds[valueIndex + 1] !== true) {
+          ++valueIndex;
         } else {
-          let hasResault = false;
-          rawValues.forEach((val, index) => {
-            const dist = Math.abs(newValue - val);
-            if (index < disabledsTrueIndex) {
-              if (dist <= valueDist) {
-                valueDist = dist;
-                valueIndex = index;
-                hasResault = true;
-              }
-            }
-          });
-          if (!hasResault) {
-            return;
-          }
+          return;
+        }
+      }
+
+      if (newValue < rawValues[valueIndex] && disableds[valueIndex] === true) {
+        if (valueIndex - 1 >= 0 && disableds[valueIndex - 1] !== true) {
+          --valueIndex;
+        } else {
+          return;
         }
       }
 

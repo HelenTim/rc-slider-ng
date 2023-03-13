@@ -22,6 +22,7 @@ export default () => (
     <div style={wrapperStyle}>
       <p>Range with custom tooltip</p>
       <TooltipSlider
+        disableds={ [false,true]}
         range
         min={0}
         max={20}

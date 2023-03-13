@@ -33,6 +33,8 @@ Online examples: https://slider.react-component.now.sh/
 
 ## Usage
 
+对rc-slider包bug的修改。以及给tipFormatter添加index参数一遍某些特殊需求；添加disableds属性，可单独控制多个handle；单独导出TooltipSlider、handleRender。
+
 ```js
 import Slider, { TooltipSlider, handleRender } from 'rc-slider-ng';
 import 'rc-slider-ng/assets/index.css';
