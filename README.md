@@ -33,7 +33,7 @@ Online examples: https://slider.react-component.now.sh/
 
 ## Usage
 
-对rc-slider包bug的修改。以及给tipFormatter添加index参数一遍某些特殊需求；添加disableds属性，可单独控制多个handle；单独导出TooltipSlider、handleRender。
+对 rc-slider 包 bug 的修改。以及给 tipFormatter 添加 index 参数一遍某些特殊需求；添加 disableds 属性，可单独控制多个 handle；单独导出 TooltipSlider、handleRender。
 
 ```js
 import Slider, { TooltipSlider, handleRender } from 'rc-slider-ng';
@@ -101,9 +101,9 @@ The following APIs are shared by Slider and Range.
 | disabled | boolean | `false` | If `true`, handles can't be moved. |
 | keyboard | boolean | `true` | Support using keyboard to move handlers. |
 | dots | boolean | `false` | When the `step` value is greater than 1, you can set the `dots` to `true` if you want to render the slider with dots. |
-| onBeforeChange | Function | NOOP | `onBeforeChange` will be triggered when `ontouchstart` or `onmousedown` is triggered. |
-| onChange | Function | NOOP | `onChange` will be triggered while the value of Slider changing. |
-| onAfterChange | Function | NOOP | `onAfterChange` will be triggered when `ontouchend` or `onmouseup` is triggered. |
+| onBeforeChange | fn(values,dragIndexRef)=>void | NOOP | `onBeforeChange` will be triggered when `ontouchstart` or `onmousedown` is triggered. `dragIndexRef.current` is dragIndex |
+| onChange | fn(valus,dragIndex)=>void | NOOP | `onChange` will be triggered while the value of Slider changing. |
+| onAfterChange | fn(values,dragIndex)=>void | NOOP | `onAfterChange` will be triggered when `ontouchend` or `onmouseup` is triggered. |
 | minimumTrackStyle | Object |  | please use `trackStyle` instead. (`only used for slider, just for compatibility , will be deprecate at rc-slider@9.x `) |
 | maximumTrackStyle | Object |  | please use `railStyle` instead (`only used for slider, just for compatibility , will be deprecate at rc-slider@9.x`) |
 | handleStyle | Array[Object] \| Object | `[{}]` | The style used for handle. (`both for slider(`Object`) and range(`Array of Object`), the array will be used for multi handle following element order`) |

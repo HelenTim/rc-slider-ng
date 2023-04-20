@@ -22,14 +22,25 @@ export default () => (
     <div style={wrapperStyle}>
       <p>Range with custom tooltip</p>
       <TooltipSlider
-        disableds={ [false,true]}
+        disableds={[false, false]}
         range
         min={0}
         max={20}
         defaultValue={[3, 10]}
-        tipFormatter={value => `${value}!`}
+        tipFormatter={(value) => `${value}!`}
         allowCross={false}
-        onChange={value => console.log({ value })}
+        onChange={(value, index) => {
+          //   console.log({ value });
+          //     console.log({ index });
+        }}
+        onAfterChange={(value, index) => {
+          //   console.log({ value });
+          //   console.log({ index });
+        }}
+        onBeforeChange={(value, ref) => {
+          console.log({ value });
+          console.log({ index: ref });
+        }}
       />
     </div>
     <div style={wrapperStyle}>

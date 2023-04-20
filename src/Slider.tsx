@@ -51,11 +51,11 @@ export interface SliderProps<ValueType = number | number[]> {
   step?: number | null;
   value?: ValueType;
   defaultValue?: ValueType;
-  onChange?: (value: ValueType) => void;
+  onChange?: (value: ValueType, dragIndex: number) => void;
   /** @deprecated It's always better to use `onChange` instead */
-  onBeforeChange?: (value: ValueType) => void;
+  onBeforeChange?: (value: ValueType, dragIndex: React.MutableRefObject<number>) => void;
   /** @deprecated It's always better to use `onChange` instead */
-  onAfterChange?: (value: ValueType) => void;
+  onAfterChange?: (value: ValueType, dragIndex: number) => void;
 
   // Cross
   allowCross?: boolean;
@@ -97,6 +97,7 @@ export interface SliderRef {
 }
 
 const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<SliderRef>) => {
+  const currentDragIndex = React.useRef(-1);
   const {
     disableds = [],
     prefixCls = 'rc-slider',
@@ -271,7 +272,7 @@ const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<SliderRef>) 
 
     // Trigger event if needed
     if (onChange && !isEqual(cloneNextValues, rawValuesRef.current, true)) {
-      onChange(getTriggerValue(cloneNextValues));
+      onChange(getTriggerValue(cloneNextValues), currentDragIndex.current);
     }
 
     // We set this later since it will re-render component immediately
@@ -318,9 +319,9 @@ const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<SliderRef>) 
         cloneNextValues.push(newValue);
       }
 
-      onBeforeChange?.(getTriggerValue(cloneNextValues));
+      onBeforeChange?.(getTriggerValue(cloneNextValues), currentDragIndex);
       triggerChange(cloneNextValues);
-      onAfterChange?.(getTriggerValue(cloneNextValues));
+      onAfterChange?.(getTriggerValue(cloneNextValues), currentDragIndex.current);
     }
   };
 
@@ -361,9 +362,9 @@ const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<SliderRef>) 
     if (!disabled) {
       const next = offsetValues(rawValues, offset, valueIndex);
 
-      onBeforeChange?.(getTriggerValue(rawValues));
+      onBeforeChange?.(getTriggerValue(rawValues), currentDragIndex);
       triggerChange(next.values);
-      onAfterChange?.(getTriggerValue(next.values));
+      onAfterChange?.(getTriggerValue(next.values), currentDragIndex.current);
 
       setKeyboardValue(next.value);
     }
@@ -392,7 +393,7 @@ const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<SliderRef>) 
   }, [draggableTrack, mergedStep]);
 
   const finishChange = () => {
-    onAfterChange?.(getTriggerValue(rawValuesRef.current));
+    onAfterChange?.(getTriggerValue(rawValuesRef.current), currentDragIndex.current);
   };
 
   const [draggingIndex, draggingValue, cacheValues, onStartDrag, beginDraggingIndex] = useDrag(
@@ -408,10 +409,12 @@ const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<SliderRef>) 
     allowCross,
   );
 
+  currentDragIndex.current = beginDraggingIndex;
+
   const onStartMove: OnStartMove = (e, valueIndex) => {
     onStartDrag(e, valueIndex);
 
-    onBeforeChange?.(getTriggerValue(rawValuesRef.current));
+    onBeforeChange?.(getTriggerValue(rawValuesRef.current), currentDragIndex);
   };
 
   // Auto focus for updated handle
